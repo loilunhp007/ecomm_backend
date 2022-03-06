@@ -49,8 +49,7 @@ public class UserDetailController {
 
     }
     @PostMapping("/addtype")
-    public ResponseEntity<Category> addType(@RequestBody TypeMember typeMember) {
-        //TODO: process POST request
+    public ResponseEntity<TypeMember> addType(@RequestBody TypeMember typeMember) {
         TypeMember typeMember2 = tvService.addType(typeMember);
         
         return ResponseEntity.status(HttpStatus.OK).body(typeMember2);
