@@ -39,6 +39,9 @@ public class UserService {
     public List<TypeMember> getAllType(){
         return typeMemberRepository.findAll();
     }
+    public TypeMember addType(TypeMember typeMember){
+        return typeMemberRepository.save(typeMember);
+    }
     public List<UserDetail> getAllByTypeMember(TypeMember typeMember){
         return tvRepository.findByTypeMember(typeMember);
     }

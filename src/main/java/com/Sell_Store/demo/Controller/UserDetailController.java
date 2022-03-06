@@ -48,6 +48,13 @@ public class UserDetailController {
         }
 
     }
+    @PostMapping("/addtype")
+    public ResponseEntity<Category> addType(@RequestBody TypeMember typeMember) {
+        //TODO: process POST request
+        TypeMember typeMember2 = tvService.addType(typeMember);
+        
+        return ResponseEntity.status(HttpStatus.OK).body(typeMember2);
+    }
     @GetMapping("/get/{id}")
     public ResponseEntity<UserDetail> getThanhVienByID(@PathVariable(name = "id")String id){
         UserDetail thanhvien = tvService.getUserDetailById(id);
