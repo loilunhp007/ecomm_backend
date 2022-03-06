@@ -23,6 +23,6 @@ public class TypeMember {
     @Column(name = "type_name",columnDefinition = 
     "nvarchar(50)",length = 50,nullable = false)
     private String typeName;
-    @Column(name = "state", columnDefinition = "int",nullable = false)
+    @Column(name = "state", columnDefinition = "NUMERIC(18,2)",nullable = false)
     private int state;
 }

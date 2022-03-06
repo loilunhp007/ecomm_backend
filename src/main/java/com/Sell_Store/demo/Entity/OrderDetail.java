@@ -28,17 +28,17 @@ public class OrderDetail {
     @Id
     @Column(name = "product_ID", columnDefinition = "nvarchar(20)")
     private String productID;
-    @Column(name = "quantity",columnDefinition = "int",nullable = false)
+    @Column(name = "quantity",nullable = false)
     private int quantity;
-    @Column(name = "price",columnDefinition = "int",nullable = false)
+    @Column(name = "price",nullable = false)
     private String price;
-    @Column(name = "deliveryAddress",columnDefinition = "nvarchar(255)",nullable = false)
+    @Column(name = "deliveryAddress",nullable = false)
     private String deliveryAddress;
-    @Column(name = "destination",columnDefinition = "nvarchar(255)",nullable = false)
+    @Column(name = "destination",nullable = false)
     private String destination;
-    @Column(name = "total",columnDefinition = "double",nullable = false)
+    @Column(name = "total",columnDefinition = "NUMERIC(18,2)",nullable = false)
     private String totalItem;
-    @Column(name = "userPay",columnDefinition = "double",nullable = true)
+    @Column(name = "userPay",columnDefinition = "NUMERIC(18,2)",nullable = true)
     private Double userPay;
     @ManyToOne
     @JoinColumn(name = "tid")

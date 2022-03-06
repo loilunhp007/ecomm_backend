@@ -22,8 +22,7 @@ public class WareHouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name",columnDefinition = 
-    "nvarchar(50)",length = 50,nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
     @Column(name = "address", columnDefinition = "nvarchar(100)")
     private String address;

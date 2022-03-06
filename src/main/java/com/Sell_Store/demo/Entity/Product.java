@@ -60,9 +60,9 @@ public class Product{
     private JSONArray images;
     @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
     private String info;
-    @Column(name = "price",columnDefinition = "double")
+    @Column(name = "price",columnDefinition = "NUMERIC(16,2)")
     private double price;
-    @Column(name = "percent_discount",columnDefinition = "int")
+    @Column(name = "percent_discount",columnDefinition = "NUMERIC(18)")
     private int percent_discount;
     @Column(name = "special_from_time")
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -70,11 +70,11 @@ public class Product{
     @Column(name = "special_to_time")
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date special_to_time;
-    @Column(name = "likes",columnDefinition = "int")
+    @Column(name = "likes",columnDefinition = "NUMERIC(18,0)")
     private int likes;
-    @Column(name = "views",columnDefinition = "int")
+    @Column(name = "views",columnDefinition = "NUMERIC(18,0)")
     private int views;
-    @Column(name = "state",columnDefinition = "int")
+    @Column(name = "state",columnDefinition = "NUMERIC(18,0)")
     private int state;
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("product")

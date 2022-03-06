@@ -36,12 +36,12 @@ import lombok.Setter;
 @IdClass(InventoryID.class)
 public class Inventory {
     @Id
-    @Column(name = "ware_id", columnDefinition = "nvarchar(20)")
+    @Column(name = "ware_id")
     private Long wareid;
     @Id
-    @Column(name = "product_ID", columnDefinition = "nvarchar(20)")
+    @Column(name = "product_ID")
     private String productID;
-    @Column(name = "quantity",columnDefinition = "int")
+    @Column(name = "quantity")
     private int quantity;
     @ManyToOne
     @MapsId("productID")

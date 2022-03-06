@@ -24,7 +24,7 @@ public class Transport {
     @Column(name = "name",columnDefinition = 
     "nvarchar(50)",length = 50,nullable = false)
     private String name;
-    @Column(name = "fee",columnDefinition = "double",nullable = false)
+    @Column(name = "fee",columnDefinition = "NUMERIC(18,2)",nullable = false)
     private Double fee;
 
 }

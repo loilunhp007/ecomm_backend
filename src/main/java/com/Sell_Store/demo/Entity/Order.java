@@ -43,18 +43,18 @@ public class Order {
                 name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
     @GeneratedValue(generator = "order_seq",
         strategy = GenerationType.SEQUENCE)  
-    @Column(name = "orderID",columnDefinition = "nvarchar(20)",nullable = false)
+    @Column(name = "orderID",nullable = false)
     private String orderID;
     @ManyToOne
     @JoinColumn(name = "uid")
     private UserDetail userDetail;
     @Column(name="starttime", nullable = false)
     private String startTime;
-    @Column(name="endtime", nullable = true, updatable = true, insertable = true)
+    @Column(name="endtime", nullable = true)
     private String endTime;
-    @Column(name = "total",columnDefinition = "double",nullable = false)
+    @Column(name = "total",nullable = false)
     private Double total;
-    @Column(name = "state",columnDefinition = "int",nullable = false)
+    @Column(name = "state",nullable = false)
     private int state;
     @OneToOne
     @JoinColumn(name = "payment_id", referencedColumnName = "payment_id")
