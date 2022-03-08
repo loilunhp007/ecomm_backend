@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://e-commerce-vanloi.web.app")
 @RequestMapping(value = "category")
 public class CategoryController {
     @Autowired

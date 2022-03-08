@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://e-commerce-vanloi.web.app")
 @RequestMapping(path = "cmt")
 public class CmtController {
     @Autowired

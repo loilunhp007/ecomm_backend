@@ -36,7 +36,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://e-commerce-vanloi.web.app")
 @RequestMapping(path = "products")
 public class ProductController {
     private byte[] bytes;

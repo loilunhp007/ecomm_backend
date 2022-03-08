@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.logging.*;
 @Controller
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://e-commerce-vanloi.web.app")
 @RestController
 @RequestMapping(path = "userdetail")
 public class UserDetailController {
