@@ -56,7 +56,7 @@ public class Product{
     @Column(name = "images",columnDefinition = "json")
     @Lob
     @JsonProperty("images")
-    private ArrayList<Image> images = new ArrayList();
+    private JSONArray images;
     @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
     private String info;
     @Column(name = "price",columnDefinition = "NUMERIC(16,2)")
