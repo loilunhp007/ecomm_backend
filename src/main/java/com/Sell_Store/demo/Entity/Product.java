@@ -3,6 +3,7 @@ package com.Sell_Store.demo.Entity;
 import lombok.*;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.json.JSONArray;
+import org.json.JSONObject;
 ;
 
 @Entity
@@ -52,12 +54,7 @@ public class Product{
     private Category category;
     @Column(name = "productName",columnDefinition = "nvarchar(255)", length = 50, nullable = false )
     private String productName;
-    @Column(name = "images",columnDefinition = "json")
-    @Lob
-    @Convert(converter = JsonConverter.class)
-    @JsonProperty("images")
-    @JsonRawValue
-    private JSONArray images;
+    private ArrayList<Image> images;
     @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
     private String info;
     @Column(name = "price",columnDefinition = "NUMERIC(16,2)")
