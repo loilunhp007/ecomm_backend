@@ -23,7 +23,6 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.json.JSONArray;
-import org.json.JSONObject;
 ;
 
 @Entity
@@ -54,6 +53,9 @@ public class Product{
     private Category category;
     @Column(name = "productName",columnDefinition = "nvarchar(255)", length = 50, nullable = false )
     private String productName;
+    @Column(name = "images",columnDefinition = "json")
+    @Lob
+    @JsonProperty("images")
     private ArrayList<Image> images;
     @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
     private String info;
