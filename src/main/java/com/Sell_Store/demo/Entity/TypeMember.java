@@ -21,7 +21,7 @@ public class TypeMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long typeID;
     @Column(name = "type_name",columnDefinition = 
-    "nvarchar(50)",length = 50,nullable = false)
+    "varchar(50)",length = 50,nullable = false)
     private String typeName;
     @Column(name = "state", columnDefinition = "NUMERIC(18,2)",nullable = false)
     private int state;
