@@ -50,29 +50,29 @@ public class UserDetail {
     @Column(name="uid",updatable = false,nullable = false) 
     private String id;
     @Column(name = "phone",columnDefinition = 
-    "nvarchar(20)",length = 12)
+    "varchar(20)",length = 12)
     private String phone;
     @Column(name = "firstname",columnDefinition = 
-    "nvarchar(20)",length = 20)
+    "varchar(20)",length = 20)
     private String firstname;
     @Column(name = "lastname",columnDefinition = 
-    "nvarchar(20)",length = 20)
+    "varchar(20)",length = 20)
     private String lastname;
     @Column(name = "address",columnDefinition = 
-    "nvarchar(100)",length = 100)
+    "varchar(100)",length = 100)
     private String address;
     @Column(name="birthday")
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date birthday;
     @Column(name = "gmail",columnDefinition = 
-    "nvarchar(20)",length = 20)
+    "varchar(20)",length = 20)
     private String gmail;
     @Column(name="timestamp", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false, updatable = false,insertable = false)
     @CreationTimestamp
     private Timestamp timestamp; 
 
     @Column(name = "state",columnDefinition = 
-    "int")
+    "NUMERIC(18,0)")
     private int state;
     @ManyToOne
     @JoinColumn(name = "typemember_id",referencedColumnName = "typeID")

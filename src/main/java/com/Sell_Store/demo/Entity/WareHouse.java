@@ -24,6 +24,6 @@ public class WareHouse {
     private long id;
     @Column(name = "name",nullable = false)
     private String name;
-    @Column(name = "address", columnDefinition = "nvarchar(100)")
+    @Column(name = "address", columnDefinition = "varchar(100)")
     private String address;
 }

@@ -46,16 +46,16 @@ public class Product{
            
     @GeneratedValue(generator = "p_seq",
         strategy = GenerationType.SEQUENCE)  
-    @Column(name = "pid",columnDefinition = "nvarchar(20)", length = 50, nullable = false )
+    @Column(name = "pid",columnDefinition = "varchar(20)", length = 50, nullable = false )
     private String productID;
     @OneToOne
     @JoinColumn(name = "cateID", referencedColumnName = "cateID")
     private Category category;
-    @Column(name = "productName",columnDefinition = "nvarchar(255)", length = 50, nullable = false )
+    @Column(name = "productName",columnDefinition = "varchar(255)", length = 50, nullable = false )
     private String productName;
     @Basic
     private ArrayList<String> images;
-    @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
+    @Column(name = "info",columnDefinition = "varchar(255)", length = 200, nullable = false )
     private String info;
     @Column(name = "price",columnDefinition = "NUMERIC(16,2)")
     private double price;

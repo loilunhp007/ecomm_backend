@@ -19,9 +19,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CmtId implements Serializable{
-    @Column(name = "orderID", columnDefinition = "nvarchar(20)")
+    @Column(name = "orderID", columnDefinition = "varchar(20)")
     private String orderID;
-    @Column(name = "pid",columnDefinition = "nvarchar(20)")
+    @Column(name = "pid",columnDefinition = "varchar(20)")
     private String productID;
 
     @Override

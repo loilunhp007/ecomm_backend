@@ -23,10 +23,10 @@ import javax.persistence.Table;
 @IdClass(OrderDetail_ID.class)
 public class OrderDetail {
     @Id
-    @Column(name = "order_ID", columnDefinition = "nvarchar(20)")
+    @Column(name = "order_ID", columnDefinition = "varchar(20)")
     private String orderID;
     @Id
-    @Column(name = "product_ID", columnDefinition = "nvarchar(20)")
+    @Column(name = "product_ID", columnDefinition = "varchar(20)")
     private String productID;
     @Column(name = "quantity",nullable = false)
     private int quantity;
