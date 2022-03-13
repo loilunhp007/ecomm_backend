@@ -19,9 +19,11 @@ import javax.servlet.ServletContext;
 import com.Sell_Store.demo.Entity.Category;
 import com.Sell_Store.demo.Entity.Product;
 import com.Sell_Store.demo.Entity.UserDetail;
+import com.Sell_Store.demo.Entity.WareHouse;
 import com.Sell_Store.demo.Services.CategoryService;
 import com.Sell_Store.demo.Services.ProductService;
 import com.Sell_Store.demo.Services.UserService;
+import com.Sell_Store.demo.Services.WareHouseService;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,8 @@ public class ProductController {
     private UserService userService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private WareHouseService wareHouseService;
 
     @GetMapping("/get")
     public List<Product> getAllProduct()  {
@@ -164,5 +168,13 @@ public class ProductController {
         conne.setRequestProperty("Content-Type", "multipart/form-data;");
         conne.setRequestProperty("connection", "Keep-Alive");
         DataOutputStream obos = new DataOutputStream(conne.getOutputStream());
+    }
+    @PostMapping("/addWareHouse")
+    public ResponseEntity<WareHouse> addWareHouse(@RequestBody WareHouse wareHouse) throws IOException{
+        WareHouse _wareHouse = null;
+        //_product.setImages(s.getBytes());
+        _wareHouse = this.wareHouseService.addWareHouse(wareHouse);
+        return ResponseEntity.status(HttpStatus.OK).body(_wareHouse);
+
     }
 }
