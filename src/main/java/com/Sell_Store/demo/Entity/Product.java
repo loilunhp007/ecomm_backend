@@ -53,10 +53,8 @@ public class Product{
     private Category category;
     @Column(name = "productName",columnDefinition = "nvarchar(255)", length = 50, nullable = false )
     private String productName;
-    @Column(name = "images",columnDefinition = "json")
-    @Lob
-    @JsonProperty("images")
-    private JSONArray images;
+    @Basic
+    private ArrayList<String> images;
     @Column(name = "info",columnDefinition = "nvarchar(255)", length = 200, nullable = false )
     private String info;
     @Column(name = "price",columnDefinition = "NUMERIC(16,2)")

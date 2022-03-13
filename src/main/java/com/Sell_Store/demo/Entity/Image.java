@@ -11,6 +11,6 @@ import lombok.Setter;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Image {
+public class Image  {
     public String name;
 }
