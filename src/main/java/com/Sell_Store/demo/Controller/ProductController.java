@@ -1,11 +1,17 @@
 package com.Sell_Store.demo.Controller;
 
 import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -131,24 +137,32 @@ public class ProductController {
     }
     @PostMapping("/upload")
     public void uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
-        String folder= "./frontend/Clothing-store/src/assets/images/products/";
-        File fi = new File("");
-        System.out.println("fi:"+fi.getAbsolutePath());
+        String URL= "https://api.imgbb.com/1/upload";
+        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, byte[]> byteMap = new HashMap<>();
+        map.put("key", "eecafd8ec18334ef834715d029389564");
         for(int i=0;i<file.length;i++){
             bytes = file[i].getBytes();
-            String name = file[i].getOriginalFilename();
-            
-        if (name != null && name.length() > 0) {
-            // Create the file at server
-            File serverFile = new File(folder + name);
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-            stream.write(bytes);
-            stream.close();                    
-        }
+            byteMap.put("images", bytes);
+            doPost(URL, map, byteMap);
         }
        
 
         
       
+    }
+    public void doPost(String url, HashMap<String, String> map, HashMap<String, byte[]> fileMap) throws IOException{
+        HttpURLConnection conne;
+        URL url1 = new URL(url);
+        conne = (HttpURLConnection) url1.openConnection();
+        conne.setDoOutput(true);
+        conne.setUseCaches(false);
+        conne.setRequestMethod("POST");
+        conne.setConnectTimeout(30000);
+        conne.setReadTimeout(50000);
+        conne.setRequestProperty("accept", "*/*");
+        conne.setRequestProperty("Content-Type", "multipart/form-data;");
+        conne.setRequestProperty("connection", "Keep-Alive");
+        DataOutputStream obos = new DataOutputStream(conne.getOutputStream());
     }
 }
