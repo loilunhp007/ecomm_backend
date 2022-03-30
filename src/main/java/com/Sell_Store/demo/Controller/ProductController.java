@@ -155,12 +155,12 @@ public class ProductController {
         for(int i=0;i<file.length;i++){
             map.put("fileName", file[i].getName());
             byteMap.put("file", bytes);
-            ResponseEntity<String> res1 =doPost(URL, file[i], bytes); 
+            ResponseEntity<String> res1 =doPost(URL, file[i].getName(),file[i], bytes); 
             res.add(res1);
         }
         return res;
     }
-    public ResponseEntity<String> doPost(String url,  MultipartFile f,byte[] m) throws IOException{
+    public ResponseEntity<String> doPost(String url, String filename, MultipartFile f,byte[] m) throws IOException{
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
