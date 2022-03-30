@@ -146,7 +146,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(obj.toString());
     }
     @PostMapping("/upload")
-    public List<ResponseEntity<String>> uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
+    public void uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
         List<ResponseEntity<String>> res = new ArrayList<>();
         String URL= "https://ik.imagekit.io/ze3ppfk4owx";
         HashMap<String, String> map = new HashMap<>();
@@ -155,10 +155,7 @@ public class ProductController {
         for(int i=0;i<file.length;i++){
             map.put("fileName", file[i].getName());
             byteMap.put("file", bytes);
-            ResponseEntity<String> res1 =doPost(URL,file[i], bytes); 
-            res.add(res1);
         }
-        return res;
     }
     public ResponseEntity<String> doPost(String url, MultipartFile f,byte[] m) throws IOException{
         RestTemplate restTemplate = new RestTemplate();
