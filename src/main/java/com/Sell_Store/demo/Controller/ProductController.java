@@ -148,7 +148,7 @@ public class ProductController {
     @PostMapping("/upload")
     public List<ResponseEntity<String>> uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
         List<ResponseEntity<String>> res = new ArrayList<>();
-        String URL= "https://upload.imagekit.io/api/v1/files/upload";
+        String URL= "https://ik.imagekit.io/ze3ppfk4owx";
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, byte[]> byteMap = new HashMap<>();
         map.put("privateKey", "private_KmrJH3oGxPwIrwxx/GjBIMJvlks=");
