@@ -162,7 +162,8 @@ public class ProductController {
     }
     public ResponseEntity<String> doPost(String url, String filename, MultipartFile f,byte[] m) throws IOException{
         RestTemplate restTemplate = new RestTemplate();
-
+        System.out.println("*************************" + f.getName());
+        System.out.println("*************************" + filename);
         HttpHeaders headers = new HttpHeaders();
     // set `content-type` header
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -171,7 +172,7 @@ public class ProductController {
     headers.set("x-request-source", "desktop");
     // create a map for post parameters
     Map<String, Object> map = new HashMap<>();
-    map.put("privateKey", "");
+    map.put("privateKey", "private_KmrJH3oGxPwIrwxx/GjBIMJvlks=");
     map.put("fileName", f.getName());
     map.put("file", m);
 
