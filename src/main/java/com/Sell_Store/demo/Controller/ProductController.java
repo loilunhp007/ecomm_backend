@@ -155,15 +155,14 @@ public class ProductController {
         for(int i=0;i<file.length;i++){
             map.put("fileName", file[i].getName());
             byteMap.put("file", bytes);
-            ResponseEntity<String> res1 =doPost(URL, file[i].getName(),file[i], bytes); 
+            ResponseEntity<String> res1 =doPost(URL,file[i], bytes); 
             res.add(res1);
         }
         return res;
     }
-    public ResponseEntity<String> doPost(String url, String filename, MultipartFile f,byte[] m) throws IOException{
+    public ResponseEntity<String> doPost(String url, MultipartFile f,byte[] m) throws IOException{
         RestTemplate restTemplate = new RestTemplate();
         System.out.println("*************************" + f.getName());
-        System.out.println("*************************" + filename);
         HttpHeaders headers = new HttpHeaders();
     // set `content-type` header
     headers.setContentType(MediaType.APPLICATION_JSON);
@@ -173,7 +172,7 @@ public class ProductController {
     // create a map for post parameters
     Map<String, Object> map = new HashMap<>();
     map.put("privateKey", "private_KmrJH3oGxPwIrwxx/GjBIMJvlks=");
-    map.put("fileName", f.getName());
+    map.put("fileName", f.getOriginalFilename());
     map.put("file", m);
 
     // build the request
