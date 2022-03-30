@@ -11,8 +11,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -27,7 +29,10 @@ import com.Sell_Store.demo.Services.WareHouseService;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,6 +45,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -140,34 +146,42 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(obj.toString());
     }
     @PostMapping("/upload")
-    public void uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
-        String URL= "https://api.imgbb.com/1/upload";
+    public List<ResponseEntity<String>> uploadImage(@RequestParam("imageFile") MultipartFile[] file) throws IOException{
+        List<ResponseEntity<String>> res = new ArrayList<>();
+        String URL= "https://upload.imagekit.io/api/v1/files/upload";
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, byte[]> byteMap = new HashMap<>();
-        map.put("key", "eecafd8ec18334ef834715d029389564");
+        map.put("privateKey", "private_KmrJH3oGxPwIrwxx/GjBIMJvlks=");
         for(int i=0;i<file.length;i++){
-            bytes = file[i].getBytes();
-            byteMap.put("images", bytes);
-            doPost(URL, map, byteMap);
+            map.put("fileName", file[i].getName());
+            byteMap.put("file", bytes);
+            ResponseEntity<String> res1 =doPost(URL, file[i], bytes); 
+            res.add(res1);
         }
-       
-
-        
-      
+        return res;
     }
-    public void doPost(String url, HashMap<String, String> map, HashMap<String, byte[]> fileMap) throws IOException{
-        HttpURLConnection conne;
-        URL url1 = new URL(url);
-        conne = (HttpURLConnection) url1.openConnection();
-        conne.setDoOutput(true);
-        conne.setUseCaches(false);
-        conne.setRequestMethod("POST");
-        conne.setConnectTimeout(30000);
-        conne.setReadTimeout(50000);
-        conne.setRequestProperty("accept", "*/*");
-        conne.setRequestProperty("Content-Type", "multipart/form-data;");
-        conne.setRequestProperty("connection", "Keep-Alive");
-        DataOutputStream obos = new DataOutputStream(conne.getOutputStream());
+    public ResponseEntity<String> doPost(String url,  MultipartFile f,byte[] m) throws IOException{
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+    // set `content-type` header
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    // set `accept` header
+    headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+    headers.set("x-request-source", "desktop");
+    // create a map for post parameters
+    Map<String, Object> map = new HashMap<>();
+    map.put("privateKey", "");
+    map.put("fileName", f.getName());
+    map.put("file", m);
+
+    // build the request
+    HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+    // send POST request
+    ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
+    return response;
+
     }
     @PostMapping("/addWareHouse")
     public ResponseEntity<WareHouse> addWareHouse(@RequestBody WareHouse wareHouse) throws IOException{
